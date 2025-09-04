@@ -327,7 +327,7 @@ if __name__ == "__main__":
 		up = np.zeros(3)
 		for line in f:
 			line = line.strip()
-			if line[0] == "#":
+			if line != "" and line[0] == "#":
 				continue
 			i = i + 1
 			if i < SKIP_EARLY*2:
@@ -355,7 +355,7 @@ if __name__ == "__main__":
 
 					up += c2w[0:3,1]
 
-				frame = {"file_path":name,"sharpness":b,"transform_matrix": c2w}
+				frame = {"file_path":os.path.abspath(name),"sharpness":b,"transform_matrix": c2w}
 				if len(cameras) != 1:
 					frame.update(cameras[int(elems[8])])
 				out["frames"].append(frame)
